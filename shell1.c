@@ -91,25 +91,39 @@ int process_command(char *command)
  *
  * Return: 0 on success, non-zero on failure.
  */
-int main(void)
+int main(int argc, char *argv[])
 {
-	char command[80];
+	if (argc > 1)
 
-	while (1)
 	{
-		printf("#cisfun$ ");
-
-		if (fgets(command, sizeof(command), stdin) == NULL)
+		for (int i = 1; i < argc; i++)
 		{
-			printf("\n");
-			break;
-		}
-
-		if (process_command(command) == 0)
-		{
-			break;
+			if (process_command(argv[i]) ==0)
+			{
+				break;
+			}
 		}
 	}
+	else
+	{
+		char command[80];
 
+		while (1)
+		{
+			printf("#cisfun$ ");
+
+			if (fgets(command, sizeof(command), stdin) == NULL)
+			{
+				printf("\n");
+				break;
+			}
+
+			if (process_command(command) == 0)
+			{
+				break;
+			}
+		}
+	}
+	
 	return (0);
 }
