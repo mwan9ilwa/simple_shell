@@ -53,9 +53,9 @@ int process_command(char *command)
 	}
 	args[i] = NULL;
 
-	if (strcmp(program, "ls") == 0)
+	if (strcmp(program, "/bin/ls") == 0)
 	{
-		exec_ls();
+		return (execvp(args[0], args));
 	}
 	else if (strcmp(program, "exit") == 0)
 	{
@@ -63,43 +63,24 @@ int process_command(char *command)
 	}
 	else
 	{
-		char *path = getenv("PATH");
-		char *dir = strtok(path, ":");
+		pid_t pid = fork();
 
-		while (dir != NULL)
+		if (pid == 0)
 		{
-			char prog_path[100];
-			snprintf(prog_path, sizeof(prog_path), "%s/%s", dir, program);
-
-			if (access(prog_path, X_OK) == 0)
-
-			{
-				pid_t pid = fork();
-
-			if (pid == 0)
-			{
-				execvp(args[0], args);
-				perror("./shell");
-				exit(EXIT_FAILURE);
-			}
-			else if (pid < 0)
-			{
-				perror("fork");
-				return (-1);
-			}
-			else
-			{
-				wait(NULL);
-				return (1);
-			}
+			execvp(args[0], args);
+			perror("./shell");
+			exit(EXIT_FAILURE);
 		}
-
-		dir = strtok(NULL, ":");
-		fprintf(stderr, "./shell: %s: command not found\n", program);
-		return(-1);
+		else if (pid < 0)
+		{
+			perror("fork");
+			return (-1);
+		}
+		else
+		{
+			wait(NULL);
+		}
 	}
-
-
 	return (1);
 }
 
