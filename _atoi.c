@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * interactive - returns true if shell is in the interactive mode state.
+ * @_interactive: - returns true if shell is in the interactive mode state.
  * @info: structure contains input and output files
  * @isatty:  is checking if the standard input file descriptor (STDIN_FILENO) is a terminal
  */
@@ -11,10 +11,9 @@ int _interactive(info_t *info)
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
-/*
- * _delimeter - checks if character is a delimeter
- * c: this is the char to check
- * @delim: this is the delimeter string
+/**
+ * @_delimeter: - checks if character is a delimeter
+ * @c: this is the char to check
  */
 int _delimeter(char c, char *delim)
 {
@@ -25,8 +24,8 @@ int _delimeter(char c, char *delim)
 }
 
 /**
- * _alphabet - will check for alphabetic characters in the code
- * c: This is the character to input
+ * @_alphabet: - will check for alphabetic characters in the code
+ * @c: This is the character to input
  */
 
 int _alphabet(int c) {
@@ -40,7 +39,7 @@ int _alphabet(int c) {
 /**
  * @_atoi: -  that converts a string of characters representing an integer into an actual integer value.
  * @s: is the string to be converted
- * Return: 0 if no numbers in string, converted number otherwise return the variable as is.
+ * @return: 0 if no numbers in string, converted number otherwise return the variable as is.
  */
 
 int _atoi(char *s)
