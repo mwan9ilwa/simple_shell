@@ -1,10 +1,9 @@
 #include "shell.h"
 
 /**
- * @_interactive: - returns true if shell is in the interactive mode state.
+ * @_interactive: - returns true if shell is in the interactive mode state
  * @info: structure contains input and output files
- * @isatty: checking the standard input file descriptor (STDIN_FILENO)
- *  is a terminal
+ * @return: Returns 1 if in interactive mode, else return 0
  */
 
 int _interactive(info_t *info)
@@ -15,8 +14,10 @@ int _interactive(info_t *info)
 /**
  * @_delimeter: - checks if character is a delimeter
  * @c: this is the char to check
+ * @delim: this is the delimeter string
+ * @return: return 1 if true, else return 0 if false
  */
-int _delimeter(char c, char *delim)
+int is_delim(char c, char *delim)
 {
 	while (*delim)
 		if (*delim++ == c)
@@ -27,21 +28,22 @@ int _delimeter(char c, char *delim)
 /**
  * @_alphabet: - will check for alphabetic characters in the code
  * @c: This is the character to input
+ * @return: returns 1 if alphabet, else return 0 if not
  */
-
-int _alphabet(int c)
+int _isalpha(int c)
 {
-if (isalpha(c)) {
-    return 1;
-} else {
-    return 0;
-}
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }
 
 /**
- * @_atoi: -  that converts a string of characters representing an integer into an actual integer value.
+ * @_atoi: -  that converts a string of characters representing
+ * an integer into an actual integer value.
  * @s: is the string to be converted
- * @return: 0 if no numbers in string, converted number otherwise return the variable as is.
+ * @return: 0 if no numbers in string, converted number
+ * otherwise return the variable as is.
  */
 
 int _atoi(char *s)
@@ -61,6 +63,5 @@ int _atoi(char *s)
         }
         result = result * 10 + (s[i] - '0');
     }
-
     return sign * result;
 }
