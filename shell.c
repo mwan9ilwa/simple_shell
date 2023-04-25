@@ -25,7 +25,7 @@ void run_command(char **args)
 	}
 }
 
-int main()
+int main(void)
 {
 	char command[MAX_LINE];
 	char *args[MAX_LINE];
