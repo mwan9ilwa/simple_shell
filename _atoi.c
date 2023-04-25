@@ -1,22 +1,23 @@
 #include "shell.h"
 
 /**
- * @_interactive: - returns true if shell is in the interactive mode state.
+ * interactive - returns true if shell is in the interactive mode state
  * @info: structure contains input and output files
- * @isatty: checking the standard input file descriptor (STDIN_FILENO)
- *  is a terminal
+ * Return: 1 if in interactive mode, else 0
  */
 
-int _interactive(info_t *info)
+int interactive(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * @_delimeter: - checks if character is a delimeter
+ * is_delimeter - checks if character is a delimeter
  * @c: this is the char to check
+ * @delim: this is the delimeter string
+ * Return: 1 if true, else 0 if false
  */
-int _delimeter(char c, char *delim)
+int is_delimeter(char c, char *delim)
 {
 	while (*delim)
 		if (*delim++ == c)
@@ -25,42 +26,50 @@ int _delimeter(char c, char *delim)
 }
 
 /**
- * @_alphabet: - will check for alphabetic characters in the code
+ * _isalphabet - will check for alphabetic characters in the code
  * @c: This is the character to input
+ * Return: 1 if alphabet, else 0 if not
  */
-
-int _alphabet(int c)
+int _isalphabet(int c)
 {
-if (isalpha(c)) {
-    return 1;
-} else {
-    return 0;
-}
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }
 
 /**
- * @_atoi: -  that converts a string of characters representing an integer into an actual integer value.
+ * _atoi -  that converts a string of characters representing
+ * an integer into an actual integer value.
  * @s: is the string to be converted
- * @return: 0 if no numbers in string, converted number otherwise return the variable as is.
+ * Return: 0 if no numbers in string, converted number
+ * else keep the variable as is.
  */
 
 int _atoi(char *s)
 {
-    int result = 0;
-    int sign = 1;
-    int i = 0;
+	int i, sign = 1, flag = 0, output;
+	unsigned int result = 0;
 
-    if (s[0] == '-') {
-        sign = -1;
-        i = 1;
-    }
+	for (i = 0;  s[i] != '\0' && flag != 2; i++)
+	{
+		if (s[i] == '-')
+			sign *= -1;
 
-    for (; s[i] != '\0'; i++) {
-        if (s[i] < '0' || s[i] > '9') {
-            break;
-        }
-        result = result * 10 + (s[i] - '0');
-    }
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			flag = 1;
+			result *= 10;
+			result += (s[i] - '0');
+		}
+		else if (flag == 1)
+			flag = 2;
+	}
 
-    return sign * result;
+	if (sign == -1)
+		output = -result;
+	else
+		output = result;
+
+	return (output);
 }
