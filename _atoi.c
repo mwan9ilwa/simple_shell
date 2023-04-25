@@ -3,7 +3,8 @@
 /**
  * @_interactive: - returns true if shell is in the interactive mode state.
  * @info: structure contains input and output files
- * @isatty:  is checking if the standard input file descriptor (STDIN_FILENO) is a terminal
+ * @isatty: checking the standard input file descriptor (STDIN_FILENO)
+ *  is a terminal
  */
 
 int _interactive(info_t *info)
@@ -28,7 +29,8 @@ int _delimeter(char c, char *delim)
  * @c: This is the character to input
  */
 
-int _alphabet(int c) {
+int _alphabet(int c) 
+{
     if (isalpha(c)) {
         return 1;
     } else {
