@@ -1,23 +1,23 @@
 #include "shell.h"
 
 /**
- * @_interactive: - returns true if shell is in the interactive mode state
+ * @interactive: - returns true if shell is in the interactive mode state
  * @info: structure contains input and output files
  * @return: Returns 1 if in interactive mode, else return 0
  */
 
-int _interactive(info_t *info)
+int interactive(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * @_delimeter: - checks if character is a delimeter
+ * @is_delimeter: - checks if character is a delimeter
  * @c: this is the char to check
  * @delim: this is the delimeter string
  * @return: return 1 if true, else return 0 if false
  */
-int _delimeter(char c, char *delim)
+int is_delimeter(char c, char *delim)
 {
 	while (*delim)
 		if (*delim++ == c)
@@ -26,11 +26,11 @@ int _delimeter(char c, char *delim)
 }
 
 /**
- * @_alphabet: - will check for alphabetic characters in the code
+ * @_isalphabet: - will check for alphabetic characters in the code
  * @c: This is the character to input
  * @return: returns 1 if alphabet, else return 0 if not
  */
-int _alphabet(int c)
+int _isalphabet(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
