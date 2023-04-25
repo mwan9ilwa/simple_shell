@@ -13,13 +13,15 @@ int exec_ls(void)
 	{
 		char *args[] = {"ls", NULL};
 
-		execvp(args[0], args);
-
-		exit(EXIT_FAILURE);
+		if (execvp(args[0], args) == -1)
+		{
+			perror("execvp");
+			exit(EXIT_FAILURE);
+		}
 	}
 	else if (pid < 0)
 	{
-		fprintf(stderr, "Failed to fork\n");
+		perror("fork");
 		return (-1);
 	}
 	else
