@@ -28,6 +28,9 @@ void run_command(char **args)
 int main()
 {
 	char command[MAX_LINE];
+	char *args[MAX_LINE];
+	int i = 0;
+	char *token;
 	
 	while (1)
 	{

@@ -34,8 +34,6 @@
 #define HIST_FILE	".simple_shell_history"
 #define HIST_MAX	4096
 
-#define MAX_LINE 80
-
 extern char **environ;
 
 
@@ -51,14 +49,6 @@ typedef struct liststr
 	char *str;
 	struct liststr *next;
 } list_t;
-
-int main()
-{
-	char command[MAX_LINE];
-	char *args[MAX_LINE];
-	pid_t pid;
-
-}
 
 /**
  * struct passinfo - contains pseudo-arguements to pass into a function,
