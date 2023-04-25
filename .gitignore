@@ -10,3 +10,8 @@ process_command.c
 main.c
 exec_command.c
 shell1.c
+execute.c
+execute.h
+builtins.c
+builtins.h
+simple_shell.c
