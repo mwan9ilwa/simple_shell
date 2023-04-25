@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * @interactive: - returns true if shell is in the interactive mode state
+ * interactive - returns true if shell is in the interactive mode state
  * @info: structure contains input and output files
- * @return: Returns 1 if in interactive mode, else return 0
+ * Return: 1 if in interactive mode, else 0
  */
 
 int interactive(info_t *info)
@@ -12,10 +12,10 @@ int interactive(info_t *info)
 }
 
 /**
- * @is_delimeter: - checks if character is a delimeter
+ * is_delimeter - checks if character is a delimeter
  * @c: this is the char to check
  * @delim: this is the delimeter string
- * @return: return 1 if true, else return 0 if false
+ * Return: 1 if true, else 0 if false
  */
 int is_delimeter(char c, char *delim)
 {
@@ -26,9 +26,9 @@ int is_delimeter(char c, char *delim)
 }
 
 /**
- * @_isalphabet: - will check for alphabetic characters in the code
+ * _isalphabet - will check for alphabetic characters in the code
  * @c: This is the character to input
- * @return: returns 1 if alphabet, else return 0 if not
+ * Return: 1 if alphabet, else 0 if not
  */
 int _isalphabet(int c)
 {
@@ -39,11 +39,11 @@ int _isalphabet(int c)
 }
 
 /**
- * @_atoi: -  that converts a string of characters representing
+ * _atoi -  that converts a string of characters representing
  * an integer into an actual integer value.
  * @s: is the string to be converted
- * @return: 0 if no numbers in string, converted number
- * otherwise return the variable as is.
+ * Return: 0 if no numbers in string, converted number
+ * else keep the variable as is.
  */
 
 int _atoi(char *s)
