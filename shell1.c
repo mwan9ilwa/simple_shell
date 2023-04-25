@@ -15,7 +15,7 @@ int exec_ls(void)
 
 		if (execvp(args[0], args) == -1)
 		{
-			perror("execvp");
+			perror("./shell");
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -68,7 +68,7 @@ int process_command(char *command)
 		if (pid == 0)
 		{
 			execvp(args[0], args);
-			perror("execvp");
+			perror("./shell");
 			exit(EXIT_FAILURE);
 		}
 		else if (pid < 0)
@@ -97,7 +97,7 @@ int main(void)
 
 	while (1)
 	{
-		printf("mzkk$ ");
+		printf("#cisfun$ ");
 
 		if (fgets(command, sizeof(command), stdin) == NULL)
 		{
