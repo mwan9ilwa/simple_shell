@@ -1,9 +1,34 @@
-#include shell.h
+#include "shell.h"
 
-int main(void)
+void run_command(char **args)
+{
+	pid_t pid = fork();
+	int status;
+
+	if (pid == 0)
+	{
+		if (execvp(args[0], args) == -1)
+		{
+			perror("error");
+			exit(1);
+		}
+		exit(0);
+	}
+	else if (pid > 0)
+	{
+		wait(&status);
+	}
+	else
+	{
+		printf("Failed to fork\n");
+		exit(1);
+	}
+}
+
+int main()
 {
 	char command[MAX_LINE];
-
+	
 	while (1)
 	{
 		char cwd[MAX_LINE];
@@ -21,6 +46,7 @@ int main(void)
 		{	printf("\n");
 			exit(0);
 		}
+
 		if (command[strlen(command) - 1] == '\n')
 		{
 			command[strlen(command) - 1] = '\0';
@@ -36,29 +62,8 @@ int main(void)
 			token = strtok(NULL, " ");
 			i++;
 		}
-
 		args[i] = NULL;
-		pid_t pid = fork();
-
-		if (pid == 0)
-		{
-			if execvp(args[0], args == -1)
-			{
-				perror("error");
-				exit(1);
-			}
-			exit(0);
-		}
-		else if (pid > 0)
-		{
-			wait(&status);
-		}
-		else
-		{
-			printf("Failed to fork\n");
-			exit(1);
-		}
+		run_command(args);
 	}
-
 	return (0);
 }
