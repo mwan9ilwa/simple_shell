@@ -15,7 +15,7 @@ int interactive(info_t *info)
  * is_delimeter - checks if character is a delimeter
  * @c: this is the char to check
  * @delim: this is the delimeter string
- * return: 1 if true, else 0 if false
+ * Return: 1 if true, else 0 if false
  */
 int is_delimeter(char c, char *delim)
 {
@@ -28,7 +28,7 @@ int is_delimeter(char c, char *delim)
 /**
  * _isalphabet - will check for alphabetic characters in the code
  * @c: This is the character to input
- * return: 1 if alphabet, else 0 if not
+ * Return: 1 if alphabet, else 0 if not
  */
 int _isalphabet(int c)
 {
@@ -42,7 +42,7 @@ int _isalphabet(int c)
  * _atoi -  that converts a string of characters representing
  * an integer into an actual integer value.
  * @s: is the string to be converted
- * return: 0 if no numbers in string, converted number
+ * Return: 0 if no numbers in string, converted number
  * else keep the variable as is.
  */
 
