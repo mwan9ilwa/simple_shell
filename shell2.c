@@ -2,6 +2,15 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
+
+/**
+ * Main - main
+ *
+ * The program runs a shell interpretor
+ *
+ * @return 0 on success, non-zero on failure.
+ */
 
 int main(void)
 {
@@ -14,13 +23,29 @@ int main(void)
 
 		if (strcmp(command, "/bin/ls\n") == 0)
 		{
+			pid_t pid = fork();
+
+			if (pid == 0)
+			{
 			char *args[] = {"ls", NULL};
+
 			execvp(args[0], args);
 
+			exit(EXIT_FAILURE);
+			}
+
+			else if (pid < 0)
+			{
+				fprintf(stderr, "Failed to fork\n");
+			}
+			else
+			{
+				wait(NULL);
+			}
 		}
 		else
 		{
-		printf("%s", command);
+			printf("%s", command);
 		}
 	}
 
