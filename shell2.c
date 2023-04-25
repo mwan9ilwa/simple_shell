@@ -19,7 +19,11 @@ int main(void)
 	while (1)
 	{
 		printf("mzkk$ ");
-		fgets(command, sizeof(command), stdin);
+		if (fgets(command, sizeof(command), stdin) == NULL)
+		{
+			printf("\n");
+			break;
+		}
 
 		if (strcmp(command, "/bin/ls\n") == 0)
 		{
@@ -49,7 +53,7 @@ int main(void)
 		}
 		else
 		{
-			printf("%s", command);
+			fprintf(stderr, "Command unknown: %s", command);
 		}
 	}
 
