@@ -9,3 +9,4 @@ AUTHORS
 process_command.c
 main.c
 exec_command.c
+shell1.c
