@@ -17,7 +17,7 @@ int _interactive(info_t *info)
  * @delim: this is the delimeter string
  * @return: return 1 if true, else return 0 if false
  */
-int is_delim(char c, char *delim)
+int _delimeter(char c, char *delim)
 {
 	while (*delim)
 		if (*delim++ == c)
@@ -30,7 +30,7 @@ int is_delim(char c, char *delim)
  * @c: This is the character to input
  * @return: returns 1 if alphabet, else return 0 if not
  */
-int _isalpha(int c)
+int _alphabet(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
@@ -48,20 +48,28 @@ int _isalpha(int c)
 
 int _atoi(char *s)
 {
-    int result = 0;
-    int sign = 1;
-    int i = 0;
+	int i, sign = 1, flag = 0, output;
+	unsigned int result = 0;
 
-    if (s[0] == '-') {
-        sign = -1;
-        i = 1;
-    }
+	for (i = 0;  s[i] != '\0' && flag != 2; i++)
+	{
+		if (s[i] == '-')
+			sign *= -1;
 
-    for (; s[i] != '\0'; i++) {
-        if (s[i] < '0' || s[i] > '9') {
-            break;
-        }
-        result = result * 10 + (s[i] - '0');
-    }
-    return sign * result;
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			flag = 1;
+			result *= 10;
+			result += (s[i] - '0');
+		}
+		else if (flag == 1)
+			flag = 2;
+	}
+
+	if (sign == -1)
+		output = -result;
+	else
+		output = result;
+
+	return (output);
 }
