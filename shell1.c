@@ -40,58 +40,48 @@ int exec_ls(void)
  */
 int process_command(char *command)
 {
-<<<<<<< HEAD
-	if (strcmp(command, "/bin/ls\n") == 0)
+	command[strcspn(command, "\n")] = '\0';
+	char *program = strtok(command, " ");
+	char *args[80];
+
+	args[0] = program;
+	int i = 1;
+
+	while ((args[i] = strtok(NULL, " ")) != NULL)
 	{
-		return (exec_ls());
+		i++;
 	}
-	else if (strcmp(command, "exit\n") == 0)
+	args[i] = NULL;
+
+	if (strcmp(program, "/bin/ls") == 0)
+	{
+		return (execvp(args[0], args));
+	}
+	else if (strcmp(program, "exit") == 0)
 	{
 		return (0);
 	}
 	else
 	{
-		char *program = strtok(command, " \n");
-		char *args[] = {program, NULL};
+		pid_t pid = fork();
 
-		execvp(args[0], args);
-=======
-    command[strcspn(command, "\n")] = '\0';
->>>>>>> 52c7e796fe015768ca34f8272f6e6a745830524c
-
-    char *program = strtok(command, " ");
-    char *args[80];
-    args[0] = program;
-    int i = 1;
-    while ((args[i] = strtok(NULL, " ")) != NULL) {
-        i++;
-    }
-    args[i] = NULL;
-
-    if (strcmp(program, "/bin/ls") == 0) {
-        return execvp(args[0], args);
-    }
-    else if (strcmp(program, "exit") == 0) {
-        return 0;
-    }
-    else {
-        pid_t pid = fork();
-
-        if (pid == 0) {
-            execvp(args[0], args);
-            perror("execvp");
-            exit(EXIT_FAILURE);
-        }
-        else if (pid < 0) {
-            perror("fork");
-            return -1;
-        }
-        else {
-            wait(NULL);
-        }
-    }
-
-    return 1;
+		if (pid == 0)
+		{
+			execvp(args[0], args);
+			perror("execvp");
+			exit(EXIT_FAILURE);
+		}
+		else if (pid < 0)
+		{
+			perror("fork");
+			return (-1);
+		}
+		else
+		{
+			wait(NULL);
+		}
+	}
+	return (1);
 }
 
 /**
