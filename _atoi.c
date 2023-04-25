@@ -29,13 +29,13 @@ int _delimeter(char c, char *delim)
  * @c: This is the character to input
  */
 
-int _alphabet(int c) 
+int _alphabet(int c)
 {
-    if (isalpha(c)) {
-        return 1;
-    } else {
-        return 0;
-    }
+if (isalpha(c)) {
+    return 1;
+} else {
+    return 0;
+}
 }
 
 /**
