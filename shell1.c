@@ -52,6 +52,7 @@ int process_command(char *command)
 	{
 		char *program = strtok(command, " \n");
 		char *args[] = {program, NULL};
+
 		execvp(args[0], args);
 
 		perror("execvp");
