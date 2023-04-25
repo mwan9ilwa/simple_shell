@@ -50,7 +50,11 @@ int process_command(char *command)
 	}
 	else
 	{
-		fprintf(stderr, "Command unknown: %s", command);
+		char *program = strtok(command, " \n");
+		char *args[] = {program, NULL};
+		execvp(args[0], args);
+
+		perror("execvp");
 		return (-1);
 	}
 }
