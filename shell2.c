@@ -43,6 +43,10 @@ int main(void)
 				wait(NULL);
 			}
 		}
+		else if (strcmp(command, "exit\n") == 0)
+		{
+			break;
+		}
 		else
 		{
 			printf("%s", command);
