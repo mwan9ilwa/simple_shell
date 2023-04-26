@@ -2,47 +2,43 @@
 
 /**
  * main - entry point of shell
- * @ac: argument count
- * @av: argument vector
+ * @argc: argument count
+ * @argv: argument vector
  *
  * Return: 0 on success,else 1 on error
  */
-
 int main(int argc, char **argv)
 {
-    // Initialize shell info struct
-    info_t info[] = { INFO_INIT };
+	info_t info[] = { INFO_INIT };
+	int fd = 2;
 
-    // Set up error file descriptor
-    int err_fd = 2;
-    err_fd += 3;
+	asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (fd)
+		: "r" (fd));
 
-    // If shell was invoked with a script file, open it
-    if (argc == 2)
-    {
-        int script_fd = open(argv[1], O_RDONLY);
-        if (script_fd == -1)
-        {
-            // Handle file open error
-            if (errno == EACCES)
-                exit(126);
-            if (errno == ENOENT)
-            {
-                fprintf(stderr, "%s: 0: Can't open %s\n", argv[0], argv[1]);
-                exit(127);
-            }
-            return EXIT_FAILURE;
-        }
-        // Store file descriptor in info struct
-        info[0].readfd = script_fd;
-    }
-
-    // Populate environment variables and load command history
-    populate_env_list(info);
-    read_history(info);
-
-    // Start shell loop
-    hsh(info, argv);
-
-    return EXIT_SUCCESS;
+	if (ac == 2)
+	{
+		fd = open(argv[1], O_RDONLY);
+		if (fd == -1)
+		{
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
+			{
+				_eputs(argv[0]);
+				_eputs(": 0: Can't open ");
+				_eputs(argv[1]);
+				_eputchar('\n');
+				_eputchar(BUF_FLUSH);
+				exit(127);
+			}
+			return (EXIT_FAILURE);
+		}
+		info->readfd = fd;
+	}
+	populate_env_list(info);
+	read_history(info);
+	hsh(info, argv);
+	return (EXIT_SUCCESS);
 }
