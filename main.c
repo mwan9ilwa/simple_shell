@@ -1,54 +1,48 @@
 #include "shell.h"
 
-int main(int argc, char *argv[])
+/**
+ * main - entry point of shell
+ * @ac: argument count
+ * @av: argument vector
+ *
+ * Return: 0 on success,else 1 on error
+ */
+
+int main(int argc, char **argv)
 {
-	char command[80];
+    // Initialize shell info struct
+    info_t info[] = { INFO_INIT };
 
-	if (argc == 1)
-	{
-		while (1)
-		{
-			printf("mzkk$ ");
+    // Set up error file descriptor
+    int err_fd = 2;
+    err_fd += 3;
 
-			if (fgets(command, sizeof(command), stdin) == NULL)
-			{
-				printf("\n");
-				break;
-			}
+    // If shell was invoked with a script file, open it
+    if (argc == 2)
+    {
+        int script_fd = open(argv[1], O_RDONLY);
+        if (script_fd == -1)
+        {
+            // Handle file open error
+            if (errno == EACCES)
+                exit(126);
+            if (errno == ENOENT)
+            {
+                fprintf(stderr, "%s: 0: Can't open %s\n", argv[0], argv[1]);
+                exit(127);
+            }
+            return EXIT_FAILURE;
+        }
+        // Store file descriptor in info struct
+        info[0].readfd = script_fd;
+    }
 
-			if (process_command(command) == 0)
-			{
-				break;
-			}
-		}
-	}
-	else if (argc == 2)
-	{
-		FILE *fp = fopen(argv[1], "r");
-		size_t len = 0;
-		char *line = NULL;
+    // Populate environment variables and load command history
+    populate_env_list(info);
+    read_history(info);
 
-		if (fp == NULL)
-		{
-			perror(argv[1]);
-			return (EXIT_FAILURE);
-		}
+    // Start shell loop
+    hsh(info, argv);
 
-		while (getline(&line, &len, fp) != -1)
-		{
-			process_command(line);
-		}
-
-		fclose(fp);
-		if (line)
-			free(line);
-	}
-	else
-	{
-		fprintf(stderr, "Usage: %s [file]\n", argv[0]);
-		return (EXIT_FAILURE);
-	}
-
-	return (EXIT_SUCCESS);
+    return EXIT_SUCCESS;
 }
-
