@@ -1,54 +1,44 @@
-#include "shell.h"
+#include "shell_header.h"
 
-int main(int argc, char *argv[])
+/**
+ * main - entry point of shell
+ * @ac: argument count
+ * @av: argument vector
+ *
+ * Return: 0 on success,else 1 on error
+ */
+int main(int ac, char **av)
 {
-	char command[80];
+	info_t info[] = { INFO_INIT };
+	int fd = 2;
 
-	if (argc == 1)
+	asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (fd)
+		: "r" (fd));
+
+	if (ac == 2)
 	{
-		while (1)
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
 		{
-			printf("mzkk$ ");
-
-			if (fgets(command, sizeof(command), stdin) == NULL)
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
 			{
-				printf("\n");
-				break;
+				_eputs(av[0]);
+				_eputs(": 0: Can't open ");
+				_eputs(av[1]);
+				_eputchar('\n');
+				_eputchar(BUF_FLUSH);
+				exit(127);
 			}
-
-			if (process_command(command) == 0)
-			{
-				break;
-			}
-		}
-	}
-	else if (argc == 2)
-	{
-		FILE *fp = fopen(argv[1], "r");
-		size_t len = 0;
-		char *line = NULL;
-
-		if (fp == NULL)
-		{
-			perror(argv[1]);
 			return (EXIT_FAILURE);
 		}
-
-		while (getline(&line, &len, fp) != -1)
-		{
-			process_command(line);
-		}
-
-		fclose(fp);
-		if (line)
-			free(line);
+		info->readfd = fd;
 	}
-	else
-	{
-		fprintf(stderr, "Usage: %s [file]\n", argv[0]);
-		return (EXIT_FAILURE);
-	}
-
+	populate_env_list(info);
+	read_history(info);
+	hsh(info, av);
 	return (EXIT_SUCCESS);
 }
-
