@@ -8,9 +8,7 @@
  */
 int interactive(info_t *info)
 {
-	int term = isatty(STDIN_FILENO);
-	int fd = info->readfd;
-	return term && (fd == STDIN_FILENO || fd == STDERR_FILENO || fd == STDOUT_FILENO);
+	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
@@ -21,12 +19,10 @@ int interactive(info_t *info)
  */
 int is_delim(char c, char *delim)
 {
-	for (int i = 0; delim[i] != '\0'; i++)
-	{
-		if (c == delim[i])
-			return 1;
-	}
-	return 0;
+	while (*delim)
+		if (*delim++ == c)
+			return (1);
+	return (0);
 }
 
 /**
@@ -37,7 +33,10 @@ int is_delim(char c, char *delim)
 
 int _isalpha(int c)
 {
-	return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }
 
 /**
@@ -45,11 +44,13 @@ int _isalpha(int c)
  *@s: the string to be converted
  *Return: 0 if no numbers in string, converted number otherwise
  */
+
 int _atoi(char *s)
 {
-	int sign = 1, flag = 0, result = 0;
+	int i, sign = 1, flag = 0, output;
+	unsigned int result = 0;
 
-	for (int i = 0; s[i] != '\0' && flag != 2; i++)
+	for (i = 0;  s[i] != '\0' && flag != 2; i++)
 	{
 		if (s[i] == '-')
 			sign *= -1;
@@ -64,5 +65,10 @@ int _atoi(char *s)
 			flag = 2;
 	}
 
-	return sign * result;
+	if (sign == -1)
+		output = -result;
+	else
+		output = result;
+
+	return (output);
 }
