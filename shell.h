@@ -1,5 +1,5 @@
-#ifndef ALX_HEADER
-#define ALX_HEADER
+#ifndef SHELL_H
+#define SHELL_H
 
 #include <stdio.h>
 #include <stdlib.h>
