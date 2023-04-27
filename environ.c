@@ -34,7 +34,7 @@ char *_getenv(info_t *info, const char *name)
 
 	while (node)
 	{
-		if (strncmp(node->str, name, len) == 0 && node->str[len] == '=')
+		if (_strcmp(node->str, name, len) == 0 && node->str[len] == '=')
 			return (node->str + len + 1);
 		node = node->next;
 	}
