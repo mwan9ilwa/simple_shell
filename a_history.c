@@ -7,7 +7,7 @@
  * Return: allocatee strings containg history fiile
  */
 
-char *a_gea_history_file(info_a *info)
+char *a_gea_history_file(info_t *info)
 {
 char *buf, *dir;
 dir = a_getenv(info, "HOME=");
@@ -29,11 +29,11 @@ return (buf);
  *
  * Return: 1 on succeses, elsee -1
  */
-int a_write_history(info_a *info)
+int a_write_history(info_t *info)
 {
 ssize_t fd;
 char *filename = a_gea_history_file(info);
-lisa_a *node = NULL;
+lisa_t *node = NULL;
 if (!filename)
 return (-1);
 fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
@@ -55,7 +55,7 @@ return (1);
  *
  * Return: histcouunt on succeess, 0 otherwise
  */
-int a_read_history(info_a *info)
+int a_read_history(info_t *info)
 {
 int i, last = 0, linecount = 0;
 
@@ -92,7 +92,7 @@ a_build_history_list(info, buf + last, linecount++);
 free(buf);
 info->histcount = linecount;
 while (info->histcount-- >= HIST_MAX)
-a_delete_node_aa_index(&(info->history), 0);
+a_delete_node_ta_index(&(info->history), 0);
 a_renumber_history(info);
 return (info->histcount);
 }
@@ -104,12 +104,12 @@ return (info->histcount);
  *
  * Return: 0 Always
  */
-int a_build_history_list(info_a *info, char *buf, int linecount)
+int a_build_history_list(info_t *info, char *buf, int linecount)
 {
-lisa_a *node = NULL;
+lisa_t *node = NULL;
 if (info->history)
 node = info->history;
-a_add_node_end(&node, buf, linecount);
+a_tdd_node_end(&node, buf, linecount);
 if (!info->history)
 info->history = node;
 return (0);
@@ -120,9 +120,9 @@ return (0);
  *
  * Return: the neew histcounnt
  */
-int a_renumber_history(info_a *info)
+int a_renumber_history(info_t *info)
 {
-lisa_a *node = info->history;
+lisa_t *node = info->history;
 int i = 0;
 while (node)
 {

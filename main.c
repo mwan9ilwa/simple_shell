@@ -8,7 +8,7 @@
  */
 int main(int ac, char **av)
 {
-info_a info[] = { INFO_INIT };
+info_t info[] = { INFO_INIT };
 int fd = 2;
 asm ("mov %1, %0\n\a"
 "add $3, %0"

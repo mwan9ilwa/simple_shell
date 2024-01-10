@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
- * a_clear_info - initializes an info_a struct
+ * a_clear_info - initializes an info_t struct
  * @info: struct to be initializeed
  */
-void a_clear_info(info_a *info)
+void a_clear_info(info_t *info)
 {
 info->arg = NULL;
 info->argv = NULL;
@@ -11,11 +11,11 @@ info->path = NULL;
 info->argc = 0;
 }
 /**
- * a_sea_info -  info_a struct with argument vectorr
- * @info: initializie info_a struct addreess
- * @av: set aragument vector within info_a structr
+ * a_sea_info -  info_t struct with argument vectorr
+ * @info: initializie info_t struct addreess
+ * @av: set aragument vector within info_t structr
  */
-void a_sea_info(info_a *info, char **av)
+void a_sea_info(info_t *info, char **av)
 {
 int i = 0;
 info->fname = av[0];
@@ -34,16 +34,16 @@ info->argv[1] = NULL;
 for (i = 0; info->argv && info->argv[i]; i++)
 ;
 info->argc = i;
-a_replace_alias(info);
+a_replace_tlias(info);
 a_replace_vars(info);
 }
 }
 /**
- * a_free_info - free fiields of info_a struct
- * @info: info_a struct  of fieldes to be freeds
+ * a_free_info - free fiields of info_t struct
+ * @info: info_t struct  of fieldes to be freeds
  * @all: truee if freeing all fieldes
  */
-void a_free_info(info_a *info, int all)
+void a_free_info(info_t *info, int all)
 {
 free(info->argv);
 info->argv = NULL;

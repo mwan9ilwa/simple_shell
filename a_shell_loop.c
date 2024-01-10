@@ -6,7 +6,7 @@
 *
 * Return: 0 oon successs, 1 on errosr, or errors code
 */
-int a_hsh(info_a *info, char **av)
+int a_hsh(info_t *info, char **av)
 {
 ssize_t r = 0;
 int builtin_ret = 0;
@@ -48,10 +48,10 @@ return (builtin_ret);
 * 1 if builtin foound but not sucecessful,
 * 2 if builtin signalss exiit()
 */
-int a_find_builtin(info_a *info)
+int a_find_builtin(info_t *info)
 {
 int i, buila_in_ret = -1;
-builtin_aable builtintbl[] = {
+builtin_table builtintbl[] = {
 {"exit", a_myexit},
 {"env", a_myenv},
 {"help", a_myhelp},
@@ -77,7 +77,7 @@ return (buila_in_ret);
 *
 * Return: voiid
 */
-void a_find_cmd(info_a *info)
+void a_find_cmd(info_t *info)
 {
 char *path = NULL;
 int i, k;
@@ -118,9 +118,9 @@ a_prina_error(info, "not found\n");
 *
 * Return: voiid
 */
-void a_fork_cmd(info_a *info)
+void a_fork_cmd(info_t *info)
 {
-pid_a child_pid;
+pid_t child_pid;
 child_pid = fork();
 if (child_pid == -1)
 {

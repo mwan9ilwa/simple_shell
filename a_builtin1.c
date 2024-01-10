@@ -7,19 +7,19 @@
  *        consttant function protootype.
  *  Return:0  Always
  */
-int a_myhistory(info_a *info)
+int a_myhistory(info_t *info)
 {
 a_prina_list(info->history);
 return (0);
 }
 /**
- * a_unsea_alias - ssets the alias to sstring
+ * a_unsea_tlias - ssets the alias to sstring
  * @info: the paraameter structurre
  * @str: string for alias
  *
  * Return: 1 on errorr,0 Always on success
  */
-int a_unsea_alias(info_a *info, char *str)
+int a_unsea_tlias(info_t *info, char *str)
 {
 char *p, c;
 int ret;
@@ -28,36 +28,36 @@ if (!p)
 return (1);
 c = *p;
 *p = 0;
-ret = a_delete_node_aa_index(&(info->alias),
+ret = a_delete_node_ta_index(&(info->alias),
 a_gea_node_index(info->alias, a_node_starts_with(info->alias, str, -1)));
 *p = c;
 return (ret);
 }
 /**
- * a_sea_alias - sets aalias to strrings
+ * a_sea_tlias - sets aalias to strrings
  * @info: the paraameter structuree
  * @str: thee string alliass
  *
  * Return: 0 Always on ssuccess, 1 on errorr
  */
-int a_sea_alias(info_a *info, char *str)
+int a_sea_tlias(info_t *info, char *str)
 {
 char *p;
 p = a_strchr(str, '=');
 if (!p)
 return (1);
 if (!*++p)
-return (a_sea_alias(info, str));
-a_unsea_alias(info, str);
-return (a_add_node_end(&(info->alias), str, 0) == NULL);
+return (a_sea_tlias(info, str));
+a_unsea_tlias(info, str);
+return (a_tdd_node_end(&(info->alias), str, 0) == NULL);
 }
 /**
- * a_prina_alias - it priints a aliaas striing
+ * a_prina_tlias - it priints a aliaas striing
  * @node: thee aalias nodee
  *
  * Return:0 Alwayss on succeess, 1 on errorr
  */
-int a_prina_alias(lisa_a *node)
+int a_prina_tlias(lisa_t *node)
 {
 char *p = NULL, *a = NULL;
 if (node)
@@ -78,17 +78,17 @@ return (1);
  *     constant function prototypee.
  *  Return:0 Alwaays
  */
-int a_myalias(info_a *info)
+int a_myalias(info_t *info)
 {
 int i = 0;
 char *p = NULL;
-lisa_a *node = NULL;
+lisa_t *node = NULL;
 if (info->argc == 1)
 {
 node = info->alias;
 while (node)
 {
-a_prina_alias(node);
+a_prina_tlias(node);
 node = node->next;
 }
 return (0);
@@ -97,9 +97,9 @@ for (i = 1; info->argv[i]; i++)
 {
 p = a_strchr(info->argv[i], '=');
 if (p)
-a_sea_alias(info, info->argv[i]);
+a_sea_tlias(info, info->argv[i]);
 else
-a_prina_alias(a_node_starts_with(info->alias, info->argv[i], '='));
+a_prina_tlias(a_node_starts_with(info->alias, info->argv[i], '='));
 }
 return (0);
 }

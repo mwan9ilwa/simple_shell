@@ -8,25 +8,25 @@
  *
  * Return: 1 if delimeter chaiin, 0 otherwise
  */
-int a_is_chain(info_a *info, char *buf, size_t *p)
+int a_is_chain(info_t *info, char *buf, size_t *p)
 {
 size_t j = *p;
 if (buf[j] == '|' && buf[j + 1] == '|')
 {
 buf[j] = 0;
 j++;
-info->cmd_buf_aype = CMD_OR;
+info->cmd_buf_type = CMD_OR;
 }
 else if (buf[j] == '&' && buf[j + 1] == '&')
 {
 buf[j] = 0;
 j++;
-info->cmd_buf_aype = CMD_AND;
+info->cmd_buf_type = CMD_AND;
 }
 else if (buf[j] == ';') /* found end of this command */
 {
 buf[j] = 0; /* replace semicolon with null */
-info->cmd_buf_aype = CMD_CHAIN;
+info->cmd_buf_type = CMD_CHAIN;
 }
 else
 return (0);
@@ -43,10 +43,10 @@ return (1);
  *
  * Return: void valuee
  */
-void a_check_chain(info_a *info, char *buf, size_t *p, size_t i, size_t len)
+void a_check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
 size_t j = *p;
-if (info->cmd_buf_aype == CMD_AND)
+if (info->cmd_buf_type == CMD_AND)
 {
 if (info->status)
 {
@@ -54,7 +54,7 @@ buf[i] = 0;
 j = len;
 }
 }
-if (info->cmd_buf_aype == CMD_OR)
+if (info->cmd_buf_type == CMD_OR)
 {
 if (!info->status)
 {
@@ -65,15 +65,15 @@ j = len;
 *p = j;
 }
 /**
- * a_replace_alias - replacess  aliasees in the tokenized striing
+ * a_replace_tlias - replacess  aliasees in the tokenized striing
  * @info: the parameeter struct
  *
  * Return: 1 if replaaced, 0 otheerwise
  */
-int a_replace_alias(info_a *info)
+int a_replace_tlias(info_t *info)
 {
 int i;
-lisa_a *node;
+lisa_t *node;
 char *p;
 for (i = 0; i < 10; i++)
 
@@ -98,10 +98,10 @@ return (1);
  *
  * Return: 1 if repalaced, 0 otherrwise
  */
-int a_replace_vars(info_a *info)
+int a_replace_vars(info_t *info)
 {
 int i = 0;
-lisa_a *node;
+lisa_t *node;
 for (i = 0; info->argv[i]; i++)
 {
 if (info->argv[i][0] != '$' || !info->argv[i][1])

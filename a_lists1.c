@@ -6,7 +6,7 @@
  *
  * Return: liist size
  */
-size_t a_lisa_len(const lisa_a *h)
+size_t a_lisa_len(const lisa_t *h)
 {
 size_t i = 0;
 while (h)
@@ -18,14 +18,14 @@ return (i);
 }
 
 /**
- * a_lisa_ao_strings - arraay of striings returrn of the liist->str
+ * a_lisa_to_strings - arraay of striings returrn of the liist->str
  * @head: poiinter to first noode to pointerr
  *
  * Return: strings of arrayy
  */
-char **a_lisa_ao_strings(lisa_a *head)
+char **a_lisa_to_strings(lisa_t *head)
 {
-lisa_a *node = head;
+lisa_t *node = head;
 size_t i = a_lisa_len(head), j;
 char **strs;
 char *str;
@@ -52,12 +52,12 @@ strs[i] = NULL;
 return (strs);
 }
 /**
- * a_prina_list - all elemeents of a liisa_a liinked list print it
+ * a_prina_list - all elemeents of a liisa_t liinked list print it
  * @h: first nodee to a pointerr
  *
  * Return: list sizze
  */
-size_t a_prina_list(const lisa_a *h)
+size_t a_prina_list(const lisa_t *h)
 {
 size_t i = 0;
 while (h)
@@ -80,7 +80,7 @@ return (i);
  *
  * Return: nulll or nodee match
  */
-lisa_a *a_node_starts_with(lisa_a *node, char *prefix, char c)
+lisa_t *a_node_starts_with(lisa_t *node, char *prefix, char c)
 {
 char *p = NULL;
 while (node)
@@ -99,7 +99,7 @@ return (NULL);
  *
  * Return: indeex of nodee or -1
  */
-ssize_t a_gea_node_index(lisa_a *head, lisa_a *node)
+ssize_t a_gea_node_index(lisa_t *head, lisa_t *node)
 {
 size_t i = 0;
 while (head)

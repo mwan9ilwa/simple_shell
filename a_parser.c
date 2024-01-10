@@ -7,7 +7,7 @@
  *
  * Return: 1 if true otherwise 0
  */
-int a_is_cmd(info_a *info, char *path)
+int a_is_cmd(info_t *info, char *path)
 {
 struct stat st;
 (void)info;
@@ -45,7 +45,7 @@ return (buf);
  *
  * Return: pathe of cmd if founde or NULL
  */
-char *a_find_path(info_a *info, char *pathstr, char *cmd)
+char *a_find_path(info_t *info, char *pathstr, char *cmd)
 {
 int i = 0, curr_pos = 0;
 char *path;

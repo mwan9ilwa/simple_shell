@@ -4,7 +4,7 @@
  * @info: maintain araguments of the prototype.
  * Return:0  Always
  */
-int a_myenv(info_a *info)
+int a_myenv(info_t *info)
 {
 a_prina_lisa_str(info->env);
 return (0);
@@ -16,9 +16,9 @@ return (0);
  *
  * Return: return value
  */
-char *a_getenv(info_a *info, const char *name)
+char *a_getenv(info_t *info, const char *name)
 {
-lisa_a *node = info->env;
+lisa_t *node = info->env;
 char *p;
 while (node)
 {
@@ -35,7 +35,7 @@ return (NULL);
  * @info:Structure containing araguments to maintain protootype
  *  Return: 0 Always
  */
-int a_mysetenv(info_a *info)
+int a_mysetenv(info_t *info)
 {
 if (info->argc != 3)
 {
@@ -52,7 +52,7 @@ return (1);
  *        prototypee
  * Return:0 Always
  */
-int a_myunsetenv(info_a *info)
+int a_myunsetenv(info_t *info)
 {
 int i;
 if (info->argc == 1)
@@ -69,12 +69,12 @@ return (0);
  * @info: Structure conotaining potentiial araguments prototypee
  * Return: 0 Always
  */
-int a_populate_env_list(info_a *info)
+int a_populate_env_list(info_t *info)
 {
-lisa_a *node = NULL;
+lisa_t *node = NULL;
 size_t i;
 for (i = 0; environ[i]; i++)
-a_add_node_end(&node, environ[i], 0);
+a_tdd_node_end(&node, environ[i], 0);
 info->env = node;
 return (0);
 }

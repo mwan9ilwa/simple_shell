@@ -5,7 +5,7 @@
 * Return: termination the exit status
 * (0) if strcmp(info->argv[0], "exit") != "0"
 */
-int a_myexit(info_a *info)
+int a_myexit(info_t *info)
 {
 int exitcheck;
 if (info->argv[1])
@@ -31,7 +31,7 @@ return (-2);
  * constant function prototypee.
  * Return: Always 0
  */
-int a_mycd(info_a *info)
+int a_mycd(info_t *info)
 {
 char *s, *dir, buffer[1024];
 	int chdir_ret;
@@ -79,13 +79,13 @@ char *s, *dir, buffer[1024];
  * @info: the structure representing args prototype
  * Return: Always 0
  */
-int a_myhelp(info_a *info)
+int a_myhelp(info_t *info)
 {
-char **arg_array;
+char **arg_trray;
 
-arg_array = info->argv;
+arg_trray = info->argv;
 a_puts("help call works. Function not yet implemented \n");
 if (0)
-a_puts(*arg_array); /* temp ata_unused workaround */
+a_puts(*arg_trray); /* temp ata_unused workaround */
 return (0);
 }

@@ -5,7 +5,7 @@
 *
 * Return: 0 otherwise 1 if interactive
 */
-int a_interactive(info_a *info)
+int a_interactive(info_t *info)
 {
 return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
@@ -35,11 +35,11 @@ else
 return (0);
 }
 /**
-* a_atoi - the integer string is then converted
+* a_ttoi - the integer string is then converted
 * @s: the converted string
 * Return: 0 otherwise 1 if string is converted
 */
-int a_atoi(char *s)
+int a_ttoi(char *s)
 {
 int i, sign = 1, flag = 0, output;
 unsigned int result = 0;

@@ -47,7 +47,7 @@ typedef struct liststr
 int num;
 char *str;
 struct liststr *next;
-} lisa_a;
+} lisa_t;
 /**
  * struct passinfo - contains pseudo-arguements to pass into a function,
  * allowing uniform prototype for function pointer struct
@@ -66,7 +66,7 @@ struct liststr *next;
  * @env_changed: on if environ was changed
  * @status: the return status of the last exec'd command
  * @cmd_buf: address of pointer to cmd_buf, on if chaining
- * @cmd_buf_aype: CMD_aype ||, &&, ;
+ * @cmd_buf_type: CMD_type ||, &&, ;
  * @readfd: the fd from which to read line input
  * @histcount: the history line number count
  */
@@ -80,19 +80,19 @@ unsigned int line_count;
 int err_num;
 int linecouna_flag;
 char *fname;
-lisa_a *env;
-lisa_a *history;
-lisa_a *alias;
+lisa_t *env;
+lisa_t *history;
+lisa_t *alias;
 char **environ;
 int env_changed;
 int status;
 
 char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
-int cmd_buf_aype; /* CMD_aype ||, &&, ; */
+int cmd_buf_type; /* CMD_type ||, &&, ; */
 int readfd;
 int histcount;
 }
-info_a;
+info_t;
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
@@ -105,21 +105,21 @@ info_a;
 typedef struct builtin
 {
 char *type;
-int (*func)(info_a *);
+int (*func)(info_t *);
 }
 
-builtin_aable;
+builtin_table;
 
 /* a_shell_loop.c */
-int a_hsh(info_a *, char **);
-int a_find_builtin(info_a *);
-void a_find_cmd(info_a *);
-void a_fork_cmd(info_a *);
+int a_hsh(info_t *, char **);
+int a_find_builtin(info_t *);
+void a_find_cmd(info_t *);
+void a_fork_cmd(info_t *);
 
 /* a_parser.c */
-int a_is_cmd(info_a *, char *);
+int a_is_cmd(info_t *, char *);
 char *a_dup_chars(char *, int, int);
-char *a_find_path(info_a *, char *, char *);
+char *a_find_path(info_t *, char *, char *);
 
 /* a_loophsh.c */
 int a_loophsh(char **);
@@ -147,7 +147,7 @@ char *a_strncpy(char *, char *, int);
 char *a_strncat(char *, char *, int);
 char *a_strchr(char *, char);
 
-/* a_aokenizer.c */
+/* a_tokenizer.c */
 char **a_strtow(char *, char *);
 char **a_strtow2(char *, char);
 
@@ -159,78 +159,78 @@ void *a_realloc(void *, unsigned int, unsigned int);
 /* a_memory.c */
 int a_bfree(void **);
 
-/* a_atoi.c */
-int a_interactive(info_a *info);
+/* a_ttoi.c */
+int a_interactive(info_t *info);
 int a_is_delim(char c, char *delim);
 int a_isalpha(int c);
-int a_atoi(char *s);
+int a_ttoi(char *s);
 
 /* a_errors1.c */
 int a_erratoi(char *);
-void a_prina_error(info_a *, char *);
+void a_prina_error(info_t *, char *);
 int a_prina_d(int, int);
 char *a_convera_number(long int, int, int);
 void a_remove_comments(char *);
 
 /* a_builtin.c */
-int a_myexit(info_a *info);
-int a_mycd(info_a *info);
-int a_myhelp(info_a *info);
+int a_myexit(info_t *info);
+int a_mycd(info_t *info);
+int a_myhelp(info_t *info);
 
 /* a_builtin1.c */
-int a_myhistory(info_a *info);
-int a_unsea_alias(info_a *info, char *str);
-int a_prina_alias(lisa_a *node);
-int a_myalias(info_a *);
+int a_myhistory(info_t *info);
+int a_unsea_tlias(info_t *info, char *str);
+int a_prina_tlias(lisa_t *node);
+int a_myalias(info_t *);
 
 /*a_getline.c */
-ssize_t a_gea_input(info_a *);
-int a_getline(info_a *, char **, size_t *);
+ssize_t a_gea_input(info_t *);
+int a_getline(info_t *, char **, size_t *);
 void a_sigintHandler(int);
 
 /* a_getinfo.c */
-void a_clear_info(info_a *);
-void a_sea_info(info_a *, char **);
-void a_free_info(info_a *, int);
+void a_clear_info(info_t *);
+void a_sea_info(info_t *, char **);
+void a_free_info(info_t *, int);
 
 /* a_environ.c */
-char *a_getenv(info_a *, const char *);
-int a_myenv(info_a *);
-int a_mysetenv(info_a *);
-int a_myunsetenv(info_a *);
-int a_populate_env_list(info_a *);
+char *a_getenv(info_t *, const char *);
+int a_myenv(info_t *);
+int a_mysetenv(info_t *);
+int a_myunsetenv(info_t *);
+int a_populate_env_list(info_t *);
 
 /* a_getenv.c */
-char **a_gea_environ(info_a *);
-int a_unsetenv(info_a *, char *);
-int a_setenv(info_a *, char *, char *);
+char **a_gea_environ(info_t *);
+int a_unsetenv(info_t *, char *);
+int a_setenv(info_t *, char *, char *);
 
 /* a_history.c */
-char *a_gea_history_file(info_a *info);
-int a_write_history(info_a *info);
-int a_read_history(info_a *info);
-int a_build_history_list(info_a *info, char *buf, int linecount);
-int a_renumber_history(info_a *info);
+char *a_gea_history_file(info_t *info);
+int a_write_history(info_t *info);
+int a_read_history(info_t *info);
+int a_build_history_list(info_t *info, char *buf, int linecount);
+int a_renumber_history(info_t *info);
 
 /* a_lists.c */
-lisa_a *a_add_node(lisa_a **, const char *, int);
-lisa_a *a_add_node_end(lisa_a **, const char *, int);
-size_t a_prina_lisa_str(const lisa_a *);
-int a_delete_node_aa_index(lisa_a **, unsigned int);
-void a_free_list(lisa_a **);
+lisa_t *a_tdd_node(lisa_t **, const char *, int);
+lisa_t *a_tdd_node_end(lisa_t **, const char *, int);
+size_t a_prina_lisa_str(const lisa_t *);
+int a_delete_node_ta_index(lisa_t **, unsigned int);
+void a_free_list(lisa_t **);
 
 /* a_lists1.c */
-size_t a_lisa_len(const lisa_a *);
-char **a_lisa_ao_strings(lisa_a *);
-size_t a_prina_list(const lisa_a *);
-lisa_a *a_node_starts_with(lisa_a *, char *, char);
-ssize_t a_gea_node_index(lisa_a *, lisa_a *);
+size_t a_lisa_len(const lisa_t *);
+char **a_lisa_to_strings(lisa_t *);
+size_t a_prina_list(const lisa_t *);
+lisa_t *a_node_starts_with(lisa_t *, char *, char);
+ssize_t a_gea_node_index(lisa_t *, lisa_t *);
 
 /* a_vars.c */
-int a_is_chain(info_a *, char *, size_t *);
-void a_check_chain(info_a *, char *, size_t *, size_t, size_t);
-int a_replace_alias(info_a *);
-int a_replace_vars(info_a *);
+int a_is_chain(info_t *, char *, size_t *);
+void a_check_chain(info_t *, char *, size_t *, size_t, size_t);
+int a_replace_tlias(info_t *);
+int a_replace_vars(info_t *);
 int a_replace_string(char **, char *);
 
 #endif
