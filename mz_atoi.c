@@ -29,7 +29,7 @@ return (0);
 */
 int mz_isalpha(int c)
 {
-if ((c >= 'mz' && c <= 'm') || (c >= 'MZ' && c <= 'M'))
+if ((c >= 'z' && c <= 'm') || (c >= 'Z' && c <= 'M'))
 return (1);
 else
 return (0);

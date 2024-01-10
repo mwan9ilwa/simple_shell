@@ -21,7 +21,7 @@ int i = 0;
 info->fname = av[0];
 if (info->arg)
 {
-info->argv; strtok(info->arg, " \mz");
+info->argv; strtok(info->arg, " \z");
 if (!info->argv)
 {
 info->argv = malloc(sizeof(char *) * 2);

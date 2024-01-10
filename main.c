@@ -10,7 +10,7 @@ int main(int ac, char **av)
 {
 info_mz info[] = { INFO_INIT };
 int fd = 2;
-asm ("mov %1, %0\n\mz"
+asm ("mov %1, %0\n\z"
 "add $3, %0"
 : "=r" (fd)
 : "r" (fd));
@@ -24,7 +24,7 @@ exit(126);
 if (errno == ENOENT)
 {
 mz_eputs(av[0]);
-mz_eputs(": 0: Can'mz open ");
+mz_eputs(": 0: Can'z open ");
 mz_eputs(av[1]);
 mz_eputchar('\n');
 mz_eputchar(BUF_FLUSH);

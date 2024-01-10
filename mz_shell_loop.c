@@ -88,7 +88,7 @@ info->line_count++;
 info->linecounmz_flag = 0;
 }
 for (i = 0, k = 0; info->arg[i]; i++)
-if (!mz_is_delim(info->arg[i], " \mz\n"))
+if (!mz_is_delim(info->arg[i], " \z\n"))
 k++;
 if (!k)
 return;

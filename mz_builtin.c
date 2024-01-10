@@ -64,7 +64,7 @@ char *s, *dir, buffer[1024];
 		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
-		mz_prinmz_error(info, "can'mz cd to ");
+		mz_prinmz_error(info, "can'z cd to ");
 		mz_eputs(info->argv[1]), mz_eputchar('\n');
 	}
 	else
