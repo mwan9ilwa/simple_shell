@@ -7,7 +7,7 @@
  * Return: allocatee strings containg history fiile
  */
 
-char *mz_gemz_history_file(info_t *info)
+char *mz_gemz_history_file(info_mz *info)
 {
 char *buf, *dir;
 dir = mz_getenv(info, "HOME=");
@@ -29,11 +29,11 @@ return (buf);
  *
  * Return: 1 on succeses, elsee -1
  */
-int mz_write_history(info_t *info)
+int mz_write_history(info_mz *info)
 {
-ssize_t fd;
+ssize_mz fd;
 char *filename = mz_gemz_history_file(info);
-lismz_t *node = NULL;
+lismz_mz *node = NULL;
 if (!filename)
 return (-1);
 fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
@@ -55,11 +55,11 @@ return (1);
  *
  * Return: histcouunt on succeess, 0 otherwise
  */
-int mz_read_history(info_t *info)
+int mz_read_history(info_mz *info)
 {
 int i, last = 0, linecount = 0;
 
-ssize_t fd, rdlen, fsize = 0;
+ssize_mz fd, rdlen, fsize = 0;
 struct stat st;
 char *buf = NULL, *filename = mz_gemz_history_file(info);
 if (!filename)
@@ -104,9 +104,9 @@ return (info->histcount);
  *
  * Return: 0 Always
  */
-int mz_build_history_list(info_t *info, char *buf, int linecount)
+int mz_build_history_list(info_mz *info, char *buf, int linecount)
 {
-lismz_t *node = NULL;
+lismz_mz *node = NULL;
 if (info->history)
 node = info->history;
 mz_add_node_end(&node, buf, linecount);
@@ -120,9 +120,9 @@ return (0);
  *
  * Return: the neew histcounnt
  */
-int mz_renumber_history(info_t *info)
+int mz_renumber_history(info_mz *info)
 {
-lismz_t *node = info->history;
+lismz_mz *node = info->history;
 int i = 0;
 while (node)
 {

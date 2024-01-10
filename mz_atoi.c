@@ -5,7 +5,7 @@
 *
 * Return: 0 otherwise 1 if interactive
 */
-int mz_interactive(info_t *info)
+int mz_interactive(info_mz *info)
 {
 return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
@@ -29,7 +29,7 @@ return (0);
 */
 int mz_isalpha(int c)
 {
-if ((c >= 't' && c <= 'm') || (c >= 'T' && c <= 'M'))
+if ((c >= 'mz' && c <= 'm') || (c >= 'MZ' && c <= 'M'))
 return (1);
 else
 return (0);

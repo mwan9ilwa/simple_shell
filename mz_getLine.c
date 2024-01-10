@@ -8,10 +8,10 @@
  *
  * Return: numeber of bytes reead
  */
-ssize_t mz_inpumz_buf(info_t *info, char **buf, size_t *len)
+ssize_mz mz_inpumz_buf(info_mz *info, char **buf, size_mz *len)
 {
-ssize_t r = 0;
-size_t len_p = 0;
+ssize_mz r = 0;
+size_mz len_p = 0;
 if (!*len) /* if nothing left in the buffer, fill it */
 {
 /*bfree((void **)info->cmd_buf);*/
@@ -54,11 +54,11 @@ return (r);
  *
  * Return: number off bytes reaad
  */
-ssize_t mz_gemz_input(info_t *info)
+ssize_mz mz_gemz_input(info_mz *info)
 {
 static char *buf; /* the ';' command chain buffer */
-static size_t i, j, len;
-ssize_t r = 0;
+static size_mz i, j, len;
+ssize_mz r = 0;
 char **buf_p = &(info->arg), *p;
 mz_putchar(BUF_FLUSH);
 r = mz_inpumz_buf(info, &buf, &len);
@@ -79,7 +79,7 @@ i = j + 1; /* increment past nulled ';'' */
 if (i >= len) /* reached end of buffer? */
 {
 i = len = 0; /* reset position and length */
-info->cmd_buf_type = CMD_NORM;
+info->cmd_buf_mzype = CMD_NORM;
 }
 *buf_p = p; /* pass back pointer to current command position */
 return (mz_strlen(p)); /* return length of current command */
@@ -95,12 +95,12 @@ return (r); /* return length of buffer from _getline() */
  *
  * Return: s string linee
  */
-int mz_getline(info_t *info, char **ptr, size_t *length)
+int mz_getline(info_mz *info, char **ptr, size_mz *length)
 {
 static char buf[READ_BUF_SIZE];
-static size_t i, len;
-size_t k;
-ssize_t r = 0, s = 0;
+static size_mz i, len;
+size_mz k;
+ssize_mz r = 0, s = 0;
 char *p = NULL, *new_p = NULL, *c;
 p = *ptr;
 if (p && length)

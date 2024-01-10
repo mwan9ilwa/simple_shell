@@ -5,7 +5,7 @@
 * Return: termination the exit status
 * (0) if strcmp(info->argv[0], "exit") != "0"
 */
-int mz_myexit(info_t *info)
+int mz_myexit(info_mz *info)
 {
 int exitcheck;
 if (info->argv[1])
@@ -31,7 +31,7 @@ return (-2);
  * constant function prototypee.
  * Return: Always 0
  */
-int mz_mycd(info_t *info)
+int mz_mycd(info_mz *info)
 {
 char *s, *dir, buffer[1024];
 	int chdir_ret;
@@ -64,7 +64,7 @@ char *s, *dir, buffer[1024];
 		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
-		mz_prinmz_error(info, "can't cd to ");
+		mz_prinmz_error(info, "can'mz cd to ");
 		mz_eputs(info->argv[1]), mz_eputchar('\n');
 	}
 	else
@@ -79,7 +79,7 @@ char *s, *dir, buffer[1024];
  * @info: the structure representing args prototype
  * Return: Always 0
  */
-int mz_myhelp(info_t *info)
+int mz_myhelp(info_mz *info)
 {
 char **arg_array;
 

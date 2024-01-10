@@ -8,15 +8,15 @@
  *
  * Return: thee list sizee
  */
-lismz_t *mz_add_node(lismz_t **head, const char *str, int num)
+lismz_mz *mz_add_node(lismz_mz **head, const char *str, int num)
 {
-lismz_t *new_head;
+lismz_mz *new_head;
 if (!head)
 return (NULL);
-new_head = malloc(sizeof(lismz_t));
+new_head = malloc(sizeof(lismz_mz));
 if (!new_head)
 return (NULL);
-mz_memset((void *)new_head, 0, sizeof(lismz_t));
+mz_memset((void *)new_head, 0, sizeof(lismz_mz));
 new_head->num = num;
 if (str)
 {
@@ -39,16 +39,16 @@ return (new_head);
  *
  * Return:  liist size
  */
-lismz_t *mz_add_node_end(lismz_t **head, const char *str, int num)
+lismz_mz *mz_add_node_end(lismz_mz **head, const char *str, int num)
 {
-lismz_t *new_node, *node;
+lismz_mz *new_node, *node;
 if (!head)
 return (NULL);
 node = *head;
-new_node = malloc(sizeof(lismz_t));
+new_node = malloc(sizeof(lismz_mz));
 if (!new_node)
 return (NULL);
-mz_memset((void *)new_node, 0, sizeof(lismz_t));
+mz_memset((void *)new_node, 0, sizeof(lismz_mz));
 new_node->num = num;
 if (str)
 {
@@ -71,14 +71,14 @@ else
 return (new_node);
 }
 /**
- * mz_prinmz_lismz_str - printss  the str eleement only of a lismz_t linkeed list
+ * mz_prinmz_lismz_str - printss  the str eleement only of a lismz_mz linkeed list
  * @h: pointeer to firstt nodes
  *
  * Return:  lisst size
  */
-size_t mz_prinmz_lismz_str(const lismz_t *h)
+size_mz mz_prinmz_lismz_str(const lismz_mz *h)
 {
-size_t i = 0;
+size_mz i = 0;
 while (h)
 {
 mz_puts(h->str ? h->str : "(nil)");
@@ -95,9 +95,9 @@ return (i);
  *
  * Return: 1on success , 0 if fail
  */
-int mz_delete_node_amz_index(lismz_t **head, unsigned int index)
+int mz_delete_node_amz_index(lismz_mz **head, unsigned int index)
 {
-lismz_t *node, *prev_node;
+lismz_mz *node, *prev_node;
 
 unsigned int i = 0;
 if (!head || !*head)
@@ -130,9 +130,9 @@ return (0);
  *
  * Return: void valuee
  */
-void mz_free_list(lismz_t **head_ptr)
+void mz_free_list(lismz_mz **head_ptr)
 {
-lismz_t *node, *nexmz_node, *head;
+lismz_mz *node, *nexmz_node, *head;
 if (!head_ptr || !*head_ptr)
 return;
 head = *head_ptr;

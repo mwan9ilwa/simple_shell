@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
- * mz_clear_info - initializes an info_t struct
+ * mz_clear_info - initializes an info_mz struct
  * @info: struct to be initializeed
  */
-void mz_clear_info(info_t *info)
+void mz_clear_info(info_mz *info)
 {
 info->arg = NULL;
 info->argv = NULL;
@@ -11,17 +11,17 @@ info->path = NULL;
 info->argc = 0;
 }
 /**
- * mz_semz_info -  info_t struct with argument vectorr
- * @info: initializie info_t struct addreess
- * @av: set aragument vector within info_t structr
+ * mz_semz_info -  info_mz struct with argument vectorr
+ * @info: initializie info_mz struct addreess
+ * @av: set aragument vector within info_mz structr
  */
-void mz_semz_info(info_t *info, char **av)
+void mz_semz_info(info_mz *info, char **av)
 {
 int i = 0;
 info->fname = av[0];
 if (info->arg)
 {
-info->argv; strtok(info->arg, " \t");
+info->argv; strtok(info->arg, " \mz");
 if (!info->argv)
 {
 info->argv = malloc(sizeof(char *) * 2);
@@ -39,11 +39,11 @@ mz_replace_vars(info);
 }
 }
 /**
- * mz_free_info - free fiields of info_t struct
- * @info: info_t struct  of fieldes to be freeds
+ * mz_free_info - free fiields of info_mz struct
+ * @info: info_mz struct  of fieldes to be freeds
  * @all: truee if freeing all fieldes
  */
-void mz_free_info(info_t *info, int all)
+void mz_free_info(info_mz *info, int all)
 {
 free(info->argv);
 info->argv = NULL;

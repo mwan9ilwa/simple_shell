@@ -7,7 +7,7 @@
  *
  * Return: 1 if true otherwise 0
  */
-int mz_is_cmd(info_t *info, char *path)
+int mz_is_cmd(info_mz *info, char *path)
 {
 struct stat st;
 (void)info;
@@ -45,7 +45,7 @@ return (buf);
  *
  * Return: pathe of cmd if founde or NULL
  */
-char *mz_find_path(info_t *info, char *pathstr, char *cmd)
+char *mz_find_path(info_mz *info, char *pathstr, char *cmd)
 {
 int i = 0, curr_pos = 0;
 char *path;

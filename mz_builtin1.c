@@ -7,7 +7,7 @@
  *        consttant function protootype.
  *  Return:0  Always
  */
-int mz_myhistory(info_t *info)
+int mz_myhistory(info_mz *info)
 {
 mz_prinmz_list(info->history);
 return (0);
@@ -19,7 +19,7 @@ return (0);
  *
  * Return: 1 on errorr,0 Always on success
  */
-int mz_unsemz_alias(info_t *info, char *str)
+int mz_unsemz_alias(info_mz *info, char *str)
 {
 char *p, c;
 int ret;
@@ -40,7 +40,7 @@ return (ret);
  *
  * Return: 0 Always on ssuccess, 1 on errorr
  */
-int mz_semz_alias(info_t *info, char *str)
+int mz_semz_alias(info_mz *info, char *str)
 {
 char *p;
 p = mz_strchr(str, '=');
@@ -57,7 +57,7 @@ return (mz_add_node_end(&(info->alias), str, 0) == NULL);
  *
  * Return:0 Alwayss on succeess, 1 on errorr
  */
-int mz_prinmz_alias(lismz_t *node)
+int mz_prinmz_alias(lismz_mz *node)
 {
 char *p = NULL, *a = NULL;
 if (node)
@@ -78,11 +78,11 @@ return (1);
  *     constant function prototypee.
  *  Return:0 Alwaays
  */
-int mz_myalias(info_t *info)
+int mz_myalias(info_mz *info)
 {
 int i = 0;
 char *p = NULL;
-lismz_t *node = NULL;
+lismz_mz *node = NULL;
 if (info->argc == 1)
 {
 node = info->alias;

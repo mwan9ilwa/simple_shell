@@ -5,11 +5,11 @@
  * @info: structure conataining potential arguments.to maiintain
  * Return: 0 alwaays
  */
-char **mz_getenviron(info_t *info)
+char **mz_getenviron(info_mz *info)
 {
 if (!info->environ || info->env_changed)
 {
-info->environ = mz_lismz_to_strings(info->env);
+info->environ = mz_lismz_mzo_strings(info->env);
 info->env_changed = 0;
 }
 return (info->environ);
@@ -20,10 +20,10 @@ return (info->environ);
  *  Return: 1 on deletee, 0 otherwise
  * @var: thee env var propeerty striing
  */
-int mz_unsetenv(info_t *info, char *var)
+int mz_unsetenv(info_mz *info, char *var)
 {
-lismz_t *node = info->env;
-size_t i = 0;
+lismz_mz *node = info->env;
+size_mz i = 0;
 char *p;
 if (!node || !var)
 return (0);
@@ -49,10 +49,10 @@ return (info->env_changed);
  * @value: the vaalue striing env var
  *  Return: o alwaays
  */
-int mz_setenv(info_t *info, char *var, char *value)
+int mz_setenv(info_mz *info, char *var, char *value)
 {
 char *buf = NULL;
-lismz_t *node;
+lismz_mz *node;
 char *p;
 if (!var || !value)
 return (0);

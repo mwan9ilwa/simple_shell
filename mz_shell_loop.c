@@ -6,9 +6,9 @@
 *
 * Return: 0 oon successs, 1 on errosr, or errors code
 */
-int mz_hsh(info_t *info, char **av)
+int mz_hsh(info_mz *info, char **av)
 {
-ssize_t r = 0;
+ssize_mz r = 0;
 int builtin_ret = 0;
 while (r != -1 && builtin_ret != -2)
 {
@@ -48,10 +48,10 @@ return (builtin_ret);
 * 1 if builtin foound but not sucecessful,
 * 2 if builtin signalss exiit()
 */
-int mz_find_builtin(info_t *info)
+int mz_find_builtin(info_mz *info)
 {
 int i, builmz_in_ret = -1;
-builtin_table builtintbl[] = {
+builtin_mzable builtintbl[] = {
 {"exit", mz_myexit},
 {"env", mz_myenv},
 {"help", mz_myhelp},
@@ -77,7 +77,7 @@ return (builmz_in_ret);
 *
 * Return: voiid
 */
-void mz_find_cmd(info_t *info)
+void mz_find_cmd(info_mz *info)
 {
 char *path = NULL;
 int i, k;
@@ -88,7 +88,7 @@ info->line_count++;
 info->linecounmz_flag = 0;
 }
 for (i = 0, k = 0; info->arg[i]; i++)
-if (!mz_is_delim(info->arg[i], " \t\n"))
+if (!mz_is_delim(info->arg[i], " \mz\n"))
 k++;
 if (!k)
 return;
@@ -118,9 +118,9 @@ mz_prinmz_error(info, "not found\n");
 *
 * Return: voiid
 */
-void mz_fork_cmd(info_t *info)
+void mz_fork_cmd(info_mz *info)
 {
-pid_t child_pid;
+pid_mz child_pid;
 child_pid = fork();
 if (child_pid == -1)
 {

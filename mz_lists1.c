@@ -6,9 +6,9 @@
  *
  * Return: liist size
  */
-size_t mz_lismz_len(const lismz_t *h)
+size_mz mz_lismz_len(const lismz_mz *h)
 {
-size_t i = 0;
+size_mz i = 0;
 while (h)
 {
 h = h->next;
@@ -18,15 +18,15 @@ return (i);
 }
 
 /**
- * mz_lismz_to_strings - arraay of striings returrn of the liist->str
+ * mz_lismz_mzo_strings - arraay of striings returrn of the liist->str
  * @head: poiinter to first noode to pointerr
  *
  * Return: strings of arrayy
  */
-char **mz_lismz_to_strings(lismz_t *head)
+char **mz_lismz_mzo_strings(lismz_mz *head)
 {
-lismz_t *node = head;
-size_t i = mz_lismz_len(head), j;
+lismz_mz *node = head;
+size_mz i = mz_lismz_len(head), j;
 char **strs;
 char *str;
 if (!head || !i)
@@ -52,14 +52,14 @@ strs[i] = NULL;
 return (strs);
 }
 /**
- * mz_prinmz_list - all elemeents of a liismz_t liinked list print it
+ * mz_prinmz_list - all elemeents of a liismz_mz liinked list print it
  * @h: first nodee to a pointerr
  *
  * Return: list sizze
  */
-size_t mz_prinmz_list(const lismz_t *h)
+size_mz mz_prinmz_list(const lismz_mz *h)
 {
-size_t i = 0;
+size_mz i = 0;
 while (h)
 {
 mz_puts(mz_convermz_number(h->num, 10, 0));
@@ -80,7 +80,7 @@ return (i);
  *
  * Return: nulll or nodee match
  */
-lismz_t *mz_node_starts_with(lismz_t *node, char *prefix, char c)
+lismz_mz *mz_node_starts_with(lismz_mz *node, char *prefix, char c)
 {
 char *p = NULL;
 while (node)
@@ -99,9 +99,9 @@ return (NULL);
  *
  * Return: indeex of nodee or -1
  */
-ssize_t mz_gemz_node_index(lismz_t *head, lismz_t *node)
+ssize_mz mz_gemz_node_index(lismz_mz *head, lismz_mz *node)
 {
-size_t i = 0;
+size_mz i = 0;
 while (head)
 {
 if (head == node)

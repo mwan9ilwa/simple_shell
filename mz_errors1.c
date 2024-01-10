@@ -35,7 +35,7 @@ int mz_erratoi(char *s)
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
  */
-void mz_prinmz_error(info_t *info, char *estr)
+void mz_prinmz_error(info_mz *info, char *estr)
 {
 	mz_eputs(info->fname);
 	mz_eputs(": ");
