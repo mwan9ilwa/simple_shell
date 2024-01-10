@@ -33,7 +33,7 @@ int a_write_history(info_t *info)
 {
 ssize_t fd;
 char *filename = a_gea_history_file(info);
-lisa_t *node = NULL;
+list_t *node = NULL;
 if (!filename)
 return (-1);
 fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
@@ -69,7 +69,7 @@ free(filename);
 if (fd == -1)
 return (0);
 if (!fstat(fd, &st))
-fsize = st.sa_size;
+fsize = st.st_size;
 if (fsize < 2)
 return (0);
 buf = malloc(sizeof(char) * (fsize + 1));
@@ -106,7 +106,7 @@ return (info->histcount);
  */
 int a_build_history_list(info_t *info, char *buf, int linecount)
 {
-lisa_t *node = NULL;
+list_t *node = NULL;
 if (info->history)
 node = info->history;
 a_tdd_node_end(&node, buf, linecount);
@@ -122,7 +122,7 @@ return (0);
  */
 int a_renumber_history(info_t *info)
 {
-lisa_t *node = info->history;
+list_t *node = info->history;
 int i = 0;
 while (node)
 {

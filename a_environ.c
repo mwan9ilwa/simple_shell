@@ -6,7 +6,7 @@
  */
 int a_myenv(info_t *info)
 {
-a_prina_lisa_str(info->env);
+a_prina_list_str(info->env);
 return (0);
 }
 /**
@@ -18,7 +18,7 @@ return (0);
  */
 char *a_getenv(info_t *info, const char *name)
 {
-lisa_t *node = info->env;
+list_t *node = info->env;
 char *p;
 while (node)
 {
@@ -71,7 +71,7 @@ return (0);
  */
 int a_populate_env_list(info_t *info)
 {
-lisa_t *node = NULL;
+list_t *node = NULL;
 size_t i;
 for (i = 0; environ[i]; i++)
 a_tdd_node_end(&node, environ[i], 0);

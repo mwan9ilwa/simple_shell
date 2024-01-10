@@ -7,7 +7,7 @@
 */
 int a_interactive(info_t *info)
 {
-return (isatty(STDIN_FILENO) && info->readfd <= 2);
+return (isttty(STDIN_FILENO) && info->readfd <= 2);
 }
 /**
 * a_is_delim - To check if a character is a delimiter
@@ -23,11 +23,11 @@ return (1);
 return (0);
 }
 /**
-* a_isalpha -checks alphabetic characters
+* a_istlpha -checks alphabetic characters
 * @c: The character to be checked
 * Return: 0 otherwise 1 if c is alphabetic
 */
-int a_isalpha(int c)
+int a_istlpha(int c)
 {
 if ((c >= 'a' && c <= 'm') || (c >= 'Z' && c <= 'M'))
 return (1);

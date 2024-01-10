@@ -57,7 +57,7 @@ return (a_tdd_node_end(&(info->alias), str, 0) == NULL);
  *
  * Return:0 Alwayss on succeess, 1 on errorr
  */
-int a_prina_tlias(lisa_t *node)
+int a_prina_tlias(list_t *node)
 {
 char *p = NULL, *a = NULL;
 if (node)
@@ -82,7 +82,7 @@ int a_myalias(info_t *info)
 {
 int i = 0;
 char *p = NULL;
-lisa_t *node = NULL;
+list_t *node = NULL;
 if (info->argc == 1)
 {
 node = info->alias;

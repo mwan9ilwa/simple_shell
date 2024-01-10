@@ -8,15 +8,15 @@
  *
  * Return: thee list sizee
  */
-lisa_t *a_tdd_node(lisa_t **head, const char *str, int num)
+list_t *a_tdd_node(list_t **head, const char *str, int num)
 {
-lisa_t *new_head;
+list_t *new_head;
 if (!head)
 return (NULL);
-new_head = malloc(sizeof(lisa_t));
+new_head = malloc(sizeof(list_t));
 if (!new_head)
 return (NULL);
-a_memset((void *)new_head, 0, sizeof(lisa_t));
+a_memset((void *)new_head, 0, sizeof(list_t));
 new_head->num = num;
 if (str)
 {
@@ -39,16 +39,16 @@ return (new_head);
  *
  * Return:  liist size
  */
-lisa_t *a_tdd_node_end(lisa_t **head, const char *str, int num)
+list_t *a_tdd_node_end(list_t **head, const char *str, int num)
 {
-lisa_t *new_node, *node;
+list_t *new_node, *node;
 if (!head)
 return (NULL);
 node = *head;
-new_node = malloc(sizeof(lisa_t));
+new_node = malloc(sizeof(list_t));
 if (!new_node)
 return (NULL);
-a_memset((void *)new_node, 0, sizeof(lisa_t));
+a_memset((void *)new_node, 0, sizeof(list_t));
 new_node->num = num;
 if (str)
 {
@@ -71,12 +71,12 @@ else
 return (new_node);
 }
 /**
- * a_prina_lisa_str - printss  the str eleement only of a lisa_t linkeed list
+ * a_prina_list_str - printss  the str eleement only of a list_t linkeed list
  * @h: pointeer to firstt nodes
  *
  * Return:  lisst size
  */
-size_t a_prina_lisa_str(const lisa_t *h)
+size_t a_prina_list_str(const list_t *h)
 {
 size_t i = 0;
 while (h)
@@ -95,9 +95,9 @@ return (i);
  *
  * Return: 1on success , 0 if fail
  */
-int a_delete_node_ta_index(lisa_t **head, unsigned int index)
+int a_delete_node_ta_index(list_t **head, unsigned int index)
 {
-lisa_t *node, *prev_node;
+list_t *node, *prev_node;
 
 unsigned int i = 0;
 if (!head || !*head)
@@ -130,9 +130,9 @@ return (0);
  *
  * Return: void valuee
  */
-void a_free_list(lisa_t **head_ptr)
+void a_free_list(list_t **head_ptr)
 {
-lisa_t *node, *nexa_node, *head;
+list_t *node, *nexa_node, *head;
 if (!head_ptr || !*head_ptr)
 return;
 head = *head_ptr;

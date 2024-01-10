@@ -9,7 +9,7 @@ char **a_getenviron(info_t *info)
 {
 if (!info->environ || info->env_changed)
 {
-info->environ = a_lisa_to_strings(info->env);
+info->environ = a_list_to_strings(info->env);
 info->env_changed = 0;
 }
 return (info->environ);
@@ -22,7 +22,7 @@ return (info->environ);
  */
 int a_unsetenv(info_t *info, char *var)
 {
-lisa_t *node = info->env;
+list_t *node = info->env;
 size_t i = 0;
 char *p;
 if (!node || !var)
@@ -52,7 +52,7 @@ return (info->env_changed);
 int a_setenv(info_t *info, char *var, char *value)
 {
 char *buf = NULL;
-lisa_t *node;
+list_t *node;
 char *p;
 if (!var || !value)
 return (0);

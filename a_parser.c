@@ -13,7 +13,7 @@ struct stat st;
 (void)info;
 if (!path || stat(path, &st))
 return (0);
-if (st.sa_mode & S_IFREG)
+if (st.st_mode & S_IFREG)
 {
 return (1);
 }

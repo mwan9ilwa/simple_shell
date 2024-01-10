@@ -133,7 +133,7 @@ return (s);
  *
  * Return: void valuee
  */
-void a_sigintHandler(__tttribute__((unused))int sig_num)
+void a_sigintHandler(__attribute__((unused))int sig_num)
 {
 a_puts("\n");
 a_puts("$ ");

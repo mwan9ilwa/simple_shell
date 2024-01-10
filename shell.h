@@ -47,7 +47,7 @@ typedef struct liststr
 int num;
 char *str;
 struct liststr *next;
-} lisa_t;
+} list_t;
 /**
  * struct passinfo - contains pseudo-arguements to pass into a function,
  * allowing uniform prototype for function pointer struct
@@ -80,9 +80,9 @@ unsigned int line_count;
 int err_num;
 int linecouna_flag;
 char *fname;
-lisa_t *env;
-lisa_t *history;
-lisa_t *alias;
+list_t *env;
+list_t *history;
+list_t *alias;
 char **environ;
 int env_changed;
 int status;
@@ -162,7 +162,7 @@ int a_bfree(void **);
 /* a_ttoi.c */
 int a_interactive(info_t *info);
 int a_is_delim(char c, char *delim);
-int a_isalpha(int c);
+int a_istlpha(int c);
 int a_ttoi(char *s);
 
 /* a_errors1.c */
@@ -180,7 +180,7 @@ int a_myhelp(info_t *info);
 /* a_builtin1.c */
 int a_myhistory(info_t *info);
 int a_unsea_tlias(info_t *info, char *str);
-int a_prina_tlias(lisa_t *node);
+int a_prina_tlias(list_t *node);
 int a_myalias(info_t *);
 
 /*a_getline.c */
@@ -213,18 +213,18 @@ int a_build_history_list(info_t *info, char *buf, int linecount);
 int a_renumber_history(info_t *info);
 
 /* a_lists.c */
-lisa_t *a_tdd_node(lisa_t **, const char *, int);
-lisa_t *a_tdd_node_end(lisa_t **, const char *, int);
-size_t a_prina_lisa_str(const lisa_t *);
-int a_delete_node_ta_index(lisa_t **, unsigned int);
-void a_free_list(lisa_t **);
+list_t *a_tdd_node(list_t **, const char *, int);
+list_t *a_tdd_node_end(list_t **, const char *, int);
+size_t a_prina_list_str(const list_t *);
+int a_delete_node_ta_index(list_t **, unsigned int);
+void a_free_list(list_t **);
 
 /* a_lists1.c */
-size_t a_lisa_len(const lisa_t *);
-char **a_lisa_to_strings(lisa_t *);
-size_t a_prina_list(const lisa_t *);
-lisa_t *a_node_starts_with(lisa_t *, char *, char);
-ssize_t a_gea_node_index(lisa_t *, lisa_t *);
+size_t a_list_len(const list_t *);
+char **a_list_to_strings(list_t *);
+size_t a_prina_list(const list_t *);
+list_t *a_node_starts_with(list_t *, char *, char);
+ssize_t a_gea_node_index(list_t *, list_t *);
 
 /* a_vars.c */
 int a_is_chain(info_t *, char *, size_t *);

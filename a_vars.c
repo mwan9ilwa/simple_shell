@@ -73,7 +73,7 @@ j = len;
 int a_replace_tlias(info_t *info)
 {
 int i;
-lisa_t *node;
+list_t *node;
 char *p;
 for (i = 0; i < 10; i++)
 
@@ -101,7 +101,7 @@ return (1);
 int a_replace_vars(info_t *info)
 {
 int i = 0;
-lisa_t *node;
+list_t *node;
 for (i = 0; info->argv[i]; i++)
 {
 if (info->argv[i][0] != '$' || !info->argv[i][1])
