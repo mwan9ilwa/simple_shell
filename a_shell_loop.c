@@ -88,7 +88,7 @@ info->line_count++;
 info->linecouna_flag = 0;
 }
 for (i = 0, k = 0; info->arg[i]; i++)
-if (!a_is_delim(info->arg[i], " \a\n"))
+if (!a_is_delim(info->arg[i], " \t\n"))
 k++;
 if (!k)
 return;
