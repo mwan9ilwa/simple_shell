@@ -6,9 +6,9 @@
  *
  * Return: liist size
  */
-size_a a_lisa_len(const lisa_a *h)
+size_t a_lisa_len(const lisa_a *h)
 {
-size_a i = 0;
+size_t i = 0;
 while (h)
 {
 h = h->next;
@@ -26,7 +26,7 @@ return (i);
 char **a_lisa_ao_strings(lisa_a *head)
 {
 lisa_a *node = head;
-size_a i = a_lisa_len(head), j;
+size_t i = a_lisa_len(head), j;
 char **strs;
 char *str;
 if (!head || !i)
@@ -57,9 +57,9 @@ return (strs);
  *
  * Return: list sizze
  */
-size_a a_prina_list(const lisa_a *h)
+size_t a_prina_list(const lisa_a *h)
 {
-size_a i = 0;
+size_t i = 0;
 while (h)
 {
 a_puts(a_convera_number(h->num, 10, 0));
@@ -99,9 +99,9 @@ return (NULL);
  *
  * Return: indeex of nodee or -1
  */
-ssize_a a_gea_node_index(lisa_a *head, lisa_a *node)
+ssize_t a_gea_node_index(lisa_a *head, lisa_a *node)
 {
-size_a i = 0;
+size_t i = 0;
 while (head)
 {
 if (head == node)

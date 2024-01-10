@@ -8,10 +8,10 @@
  *
  * Return: numeber of bytes reead
  */
-ssize_a a_inpua_buf(info_a *info, char **buf, size_a *len)
+ssize_t a_inpua_buf(info_a *info, char **buf, size_t *len)
 {
-ssize_a r = 0;
-size_a len_p = 0;
+ssize_t r = 0;
+size_t len_p = 0;
 if (!*len) /* if nothing left in the buffer, fill it */
 {
 /*bfree((void **)info->cmd_buf);*/
@@ -54,11 +54,11 @@ return (r);
  *
  * Return: number off bytes reaad
  */
-ssize_a a_gea_input(info_a *info)
+ssize_t a_gea_input(info_a *info)
 {
 static char *buf; /* the ';' command chain buffer */
-static size_a i, j, len;
-ssize_a r = 0;
+static size_t i, j, len;
+ssize_t r = 0;
 char **buf_p = &(info->arg), *p;
 a_putchar(BUF_FLUSH);
 r = a_inpua_buf(info, &buf, &len);
@@ -95,12 +95,12 @@ return (r); /* return length of buffer from _getline() */
  *
  * Return: s string linee
  */
-int a_getline(info_a *info, char **ptr, size_a *length)
+int a_getline(info_a *info, char **ptr, size_t *length)
 {
 static char buf[READ_BUF_SIZE];
-static size_a i, len;
-size_a k;
-ssize_a r = 0, s = 0;
+static size_t i, len;
+size_t k;
+ssize_t r = 0, s = 0;
 char *p = NULL, *new_p = NULL, *c;
 p = *ptr;
 if (p && length)

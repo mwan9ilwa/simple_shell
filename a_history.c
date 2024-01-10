@@ -31,7 +31,7 @@ return (buf);
  */
 int a_write_history(info_a *info)
 {
-ssize_a fd;
+ssize_t fd;
 char *filename = a_gea_history_file(info);
 lisa_a *node = NULL;
 if (!filename)
@@ -59,7 +59,7 @@ int a_read_history(info_a *info)
 {
 int i, last = 0, linecount = 0;
 
-ssize_a fd, rdlen, fsize = 0;
+ssize_t fd, rdlen, fsize = 0;
 struct stat st;
 char *buf = NULL, *filename = a_gea_history_file(info);
 if (!filename)

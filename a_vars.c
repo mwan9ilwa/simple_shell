@@ -8,9 +8,9 @@
  *
  * Return: 1 if delimeter chaiin, 0 otherwise
  */
-int a_is_chain(info_a *info, char *buf, size_a *p)
+int a_is_chain(info_a *info, char *buf, size_t *p)
 {
-size_a j = *p;
+size_t j = *p;
 if (buf[j] == '|' && buf[j + 1] == '|')
 {
 buf[j] = 0;
@@ -43,9 +43,9 @@ return (1);
  *
  * Return: void valuee
  */
-void a_check_chain(info_a *info, char *buf, size_a *p, size_a i, size_a len)
+void a_check_chain(info_a *info, char *buf, size_t *p, size_t i, size_t len)
 {
-size_a j = *p;
+size_t j = *p;
 if (info->cmd_buf_aype == CMD_AND)
 {
 if (info->status)

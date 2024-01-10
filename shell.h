@@ -184,8 +184,8 @@ int a_prina_alias(lisa_a *node);
 int a_myalias(info_a *);
 
 /*a_getline.c */
-ssize_a a_gea_input(info_a *);
-int a_getline(info_a *, char **, size_a *);
+ssize_t a_gea_input(info_a *);
+int a_getline(info_a *, char **, size_t *);
 void a_sigintHandler(int);
 
 /* a_getinfo.c */
@@ -215,20 +215,20 @@ int a_renumber_history(info_a *info);
 /* a_lists.c */
 lisa_a *a_add_node(lisa_a **, const char *, int);
 lisa_a *a_add_node_end(lisa_a **, const char *, int);
-size_a a_prina_lisa_str(const lisa_a *);
+size_t a_prina_lisa_str(const lisa_a *);
 int a_delete_node_aa_index(lisa_a **, unsigned int);
 void a_free_list(lisa_a **);
 
 /* a_lists1.c */
-size_a a_lisa_len(const lisa_a *);
+size_t a_lisa_len(const lisa_a *);
 char **a_lisa_ao_strings(lisa_a *);
-size_a a_prina_list(const lisa_a *);
+size_t a_prina_list(const lisa_a *);
 lisa_a *a_node_starts_with(lisa_a *, char *, char);
-ssize_a a_gea_node_index(lisa_a *, lisa_a *);
+ssize_t a_gea_node_index(lisa_a *, lisa_a *);
 
 /* a_vars.c */
-int a_is_chain(info_a *, char *, size_a *);
-void a_check_chain(info_a *, char *, size_a *, size_a, size_a);
+int a_is_chain(info_a *, char *, size_t *);
+void a_check_chain(info_a *, char *, size_t *, size_t, size_t);
 int a_replace_alias(info_a *);
 int a_replace_vars(info_a *);
 int a_replace_string(char **, char *);

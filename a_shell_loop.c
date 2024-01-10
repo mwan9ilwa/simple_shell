@@ -8,7 +8,7 @@
 */
 int a_hsh(info_a *info, char **av)
 {
-ssize_a r = 0;
+ssize_t r = 0;
 int builtin_ret = 0;
 while (r != -1 && builtin_ret != -2)
 {

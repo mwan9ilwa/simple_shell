@@ -23,7 +23,7 @@ return (info->environ);
 int a_unsetenv(info_a *info, char *var)
 {
 lisa_a *node = info->env;
-size_a i = 0;
+size_t i = 0;
 char *p;
 if (!node || !var)
 return (0);

@@ -76,9 +76,9 @@ return (new_node);
  *
  * Return:  lisst size
  */
-size_a a_prina_lisa_str(const lisa_a *h)
+size_t a_prina_lisa_str(const lisa_a *h)
 {
-size_a i = 0;
+size_t i = 0;
 while (h)
 {
 a_puts(h->str ? h->str : "(nil)");
